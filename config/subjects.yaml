@@ -1,0 +1,33 @@
+# Add a subject by creating materials/<folder> and one entry here.
+# No code change is required. Each id gets its own retrieval collection.
+subjects:
+  - id: mathematics
+    name: Mathematics
+    source_folder: mathematics
+  - id: english
+    name: English
+    source_folder: english
+  - id: tamil
+    name: Tamil
+    source_folder: tamil
+  - id: chemistry
+    name: Chemistry
+    source_folder: chemistry
+  - id: physics
+    name: Physics
+    source_folder: physics
+  - id: biology
+    name: Biology
+    source_folder: biology
+  - id: os
+    name: Operating Systems
+    source_folder: os
+  - id: dbms
+    name: Database Systems
+    source_folder: dbms
+  - id: cn
+    name: Computer Networks
+    source_folder: cn
+  - id: unix
+    name: Unix
+    source_folder: unix

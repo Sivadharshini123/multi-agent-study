@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Weekly study report</title>
+    <style>
+      body { font-family: "Noto Sans", "Nirmala UI", sans-serif; color: #1c1915; margin: 32px; }
+      h1 { font-size: 22px; margin-bottom: 4px; }
+      h2 { font-size: 16px; margin-top: 28px; }
+      p, li { font-size: 13px; line-height: 1.45; }
+      table { border-collapse: collapse; width: 100%; }
+      th, td { border-bottom: 1px solid #ddd; text-align: left; padding: 6px 4px; font-size: 12px; }
+      .muted { color: #5c564c; }
+    </style>
+  </head>
+  <body>
+    <h1>Weekly study report</h1>
+    <p>{{ name }} · {{ course }}</p>
+    <p class="muted">{{ start }} to {{ end }}</p>
+    <p>Syllabus coverage: {{ coverage }}%. Topics finished: {{ topics_done }} of {{ topics_total }}.</p>
+    <p>Quiz accuracy: {{ accuracy }}. Accuracy on topics you have missed before: {{ missed }}.</p>
+    <p>Completed pomodoros: {{ pomodoros }}. Mistake-notebook entries: {{ mistakes }}.</p>
+    <h2>Time by topic</h2>
+    <table>
+      <thead><tr><th>Subject</th><th>Topic</th><th>Minutes</th><th>Status</th></tr></thead>
+      <tbody>
+        {% for row in topics %}
+        <tr>
+          <td>{{ row.subject_id }}</td>
+          <td>{{ row.title }}</td>
+          <td>{{ row.minutes_spent }}</td>
+          <td>{{ row.status }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <h2>Critiques</h2>
+    {% for item in critiques %}
+      <article>
+        <p class="muted">{{ item.kind }} · {{ item.created_at }}</p>
+        <p>{{ item.body }}</p>
+      </article>
+    {% else %}
+      <p>No critique was written this week.</p>
+    {% endfor %}
+  </body>
+</html>

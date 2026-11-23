@@ -123,4 +123,3 @@ npm run dev
 * **Zero Browser Key Exposure:** React communicates exclusively with FastAPI REST endpoints; `OPENROUTER_API_KEY` and `POSTGRES_URI` remain strictly in server-side `.env` variables.
 * **Prompt Injection Isolation:** Student queries and retrieved textbook passages are wrapped in distinct XML delimiters (`<student_query>`, `<textbook_context>`) with role-locked system prompts.
 * **Low End-to-End Latency:** Keeping `all-MiniLM-L6-v2` and `ChromaDB` local eliminates external vector DB round-trips, while pairing them with **Claude 3 Haiku** keeps multi-agent chains fast and cost-efficient.
-*

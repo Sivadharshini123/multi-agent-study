@@ -72,22 +72,40 @@ def chunk_words(
 ) -> list[TextChunk]:
     if not words:
         return []
-    step = max(1, size - overlap)
+
+    # Group words by chapter boundary so different chapters never cross-contaminate chunks
+    chapter_groups: list[list[WordSpan]] = []
+    current_group: list[WordSpan] = []
+    current_chapter = words[0].chapter if words else "Notes"
+
+    for w in words:
+        if w.chapter != current_chapter and current_group:
+            chapter_groups.append(current_group)
+            current_group = []
+            current_chapter = w.chapter
+        current_group.append(w)
+    if current_group:
+        chapter_groups.append(current_group)
+
     chunks: list[TextChunk] = []
-    start = 0
-    while start < len(words):
-        window = words[start : start + size]
-        if not window:
-            break
-        chunks.append(
-            TextChunk(
-                index=len(chunks),
-                text=" ".join(word.text for word in window),
-                chapter=window[0].chapter,
-                page=window[0].page,
+    step = max(1, size - overlap)
+
+    for group in chapter_groups:
+        start = 0
+        while start < len(group):
+            window = group[start : start + size]
+            if not window:
+                break
+            chunks.append(
+                TextChunk(
+                    index=len(chunks),
+                    text=" ".join(word.text for word in window),
+                    chapter=window[0].chapter,
+                    page=window[0].page,
+                )
             )
-        )
-        if start + size >= len(words):
-            break
-        start += step
+            if start + size >= len(group):
+                break
+            start += step
+
     return chunks

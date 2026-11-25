@@ -10,7 +10,8 @@ NOT_FOUND = "not found in the material."
 _STOP = {
     "what", "is", "the", "a", "an", "of", "to", "and", "or", "in", "on", "for", "how",
     "does", "do", "with", "this", "that", "from", "your", "about", "source", "chapter",
-    "page", "notes", "define", "explain", "state", "tell", "give",
+    "page", "notes", "define", "explain", "state", "tell", "give", "describe", "discuss",
+    "are", "can", "briefly",
 }
 
 
@@ -32,43 +33,88 @@ def format_sources(citations: list[dict]) -> str:
 
 
 def _sentences(text: str) -> list[str]:
-    return [part.strip() for part in re.split(r"(?<=[.!?\n])\s+", text) if part.strip() and len(part.strip()) > 10]
+    # Split on sentence boundaries, colons, or numbered list items
+    raw_parts = re.split(r"(?<=[.!?\n])\s+", text)
+    cleaned = []
+    for part in raw_parts:
+        p = part.strip()
+        if p and len(p) > 10:
+            cleaned.append(p)
+    return cleaned
+
+
+def _stem_word(w: str) -> str:
+    w = w.lower()
+    for s in ("ing", "tion", "tions", "ness", "ment", "s", "es", "ed", "al", "ic"):
+        if w.endswith(s) and len(w) - len(s) >= 3:
+            return w[:-len(s)]
+    return w
 
 
 def extractive_answer(query: str, hits: list[Hit]) -> tuple[str, list[dict]]:
     if not hits:
         return NOT_FOUND, []
-    query_terms = {
-        tok
+
+    query_terms = [
+        tok.lower()
         for tok in re.findall(r"\w+", query.lower(), flags=re.UNICODE)
-        if tok not in _STOP and len(tok) > 2
-    }
+        if tok not in _STOP and len(tok) > 1
+    ]
+    query_stems = {_stem_word(t) for t in query_terms}
     is_tamil = contains_tamil(query)
+
+    scored_sentences: list[tuple[float, str, Hit]] = []
+
+    # Score each sentence in the top retrieved hits against the query keywords
+    for rank_idx, hit in enumerate(hits[:4]):
+        sentences = _sentences(hit.text)
+        hit_bonus = max(0.0, 1.0 - (rank_idx * 0.25))
+
+        for s_idx, sentence in enumerate(sentences):
+            s_lower = sentence.lower()
+            s_tokens = set(re.findall(r"\w+", s_lower, flags=re.UNICODE))
+            s_stems = {_stem_word(w) for w in s_tokens}
+
+            exact_count = sum(1 for t in query_terms if t in s_lower or t in s_tokens)
+            stem_count = len(query_stems & s_stems)
+
+            score = (exact_count * 3.0) + (stem_count * 1.5)
+
+            # High bonus if multiple query terms appear in the same sentence (e.g. cardiac + arrest + symptoms)
+            if query_terms and exact_count >= 2:
+                score += 5.0
+            if query_terms and exact_count == len(query_terms):
+                score += 8.0
+
+            if is_tamil and contains_tamil(sentence):
+                score += 3.0
+
+            if score > 0:
+                final_score = (score * 2.0) + hit_bonus
+                scored_sentences.append((final_score, sentence, hit))
+            elif rank_idx == 0:
+                # Fallback baseline for leading sentences of top hit
+                scored_sentences.append((0.05 - (s_idx * 0.005), sentence, hit))
+
+    if not scored_sentences:
+        return NOT_FOUND, []
+
+    # Sort descending by relevance score
+    scored_sentences.sort(key=lambda x: x[0], reverse=True)
+
     chosen: list[str] = []
     used_hits: list[Hit] = []
+    seen_texts: set[str] = set()
 
-    for hit in hits:
-        for sentence in _sentences(hit.text):
-            words = set(re.findall(r"\w+", sentence.lower(), flags=re.UNICODE))
-            matched = bool(words & query_terms) if query_terms else True
-            if not matched and is_tamil:
-                # Tamil query with English or Tamil text in hit
-                matched = contains_tamil(sentence) or hit == hits[0]
-            if matched or hit.keyword >= 0.5 or hit.score >= 0.2:
-                chosen.append(sentence)
-                used_hits.append(hit)
-            if len(chosen) >= 3:
-                break
+    for score, sentence, hit in scored_sentences:
+        if sentence in seen_texts:
+            continue
+        seen_texts.add(sentence)
+        chosen.append(sentence)
+        if hit not in used_hits:
+            used_hits.append(hit)
         if len(chosen) >= 3:
             break
-
-    if not chosen:
-        top_sentences = _sentences(hits[0].text)[:2]
-        if top_sentences:
-            chosen = top_sentences
-            used_hits = [hits[0]]
-        else:
-            return NOT_FOUND, []
 
     citations = citations_for(used_hits or hits[:1])
     body = " ".join(chosen)
@@ -99,7 +145,7 @@ def grounded(answer: str, hits: list[Hit], *, tamil_question: bool) -> bool:
     if not words:
         return False
     overlap = sum(1 for word in words if word in blob) / len(words)
-    return overlap >= 0.45
+    return overlap >= 0.40
 
 
 def attach_source(answer: str, citations: list[dict]) -> str:

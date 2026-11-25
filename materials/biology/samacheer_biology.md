@@ -130,17 +130,16 @@ Protein-Energy Malnutrition (PEM):
 
 <!-- page: 8 -->
 
-Respiratory Organs and Mechanism of Breathing:
-In humans, atmospheric air enters via external nostrils -> nasal cavity -> pharynx -> glottis of larynx (voice box protected by cartilaginous flap epiglottis) -> trachea -> primary, secondary, and tertiary bronchi -> terminal bronchioles -> respiratory alveoli.
-Alveoli are thin-walled, vascularized bag-like structures providing ~70 to 100 m^2 surface area for gas exchange.
-The respiratory membrane consists of three layers: alveolar squamous epithelium, capillary endothelium, and intervening thin basement membrane, with a total thickness under 0.5 micrometres.
+Breathing Mechanism and Pulmonary Ventilation:
+Breathing (pulmonary ventilation) is the physical process of drawing atmospheric air into the lungs and expelling alveolar air out to facilitate gaseous exchange.
+The respiratory tract comprises: external nostrils -> nasal cavity -> pharynx -> larynx (guarded by the cartilaginous epiglottis) -> trachea -> bronchi -> bronchioles -> alveoli.
+Alveoli are thin-walled, highly vascularized sac-like structures providing ~70 to 100 m^2 surface area for gas diffusion across the ultra-thin respiratory membrane (<0.5 micrometres).
 
-Mechanism of Pulmonary Ventilation:
-1. Inspiration (Active process):
-Contraction of the dome-shaped diaphragm increases thoracic volume in the antero-posterior axis. Contraction of External Intercostal Muscles lifts ribs and sternum, increasing thoracic volume in the dorso-ventral axis.
-Intra-pulmonary pressure drops below atmospheric pressure (-1 mm Hg), and air rushes into the lungs.
-2. Expiration (Passive process during quiet breathing):
-Relaxation of diaphragm and external intercostal muscles restores thoracic volume, intra-pulmonary pressure rises above atmospheric (+1 mm Hg), expelling air.
+Mechanism of Breathing involves two phases:
+1. Inspiration (Inhalation - Active process):
+Inspiration occurs when atmospheric air is drawn into the lungs. It is initiated by the contraction of the dome-shaped diaphragm, which flattens and moves downward, increasing the volume of the thoracic cavity along the antero-posterior axis. Simultaneously, contraction of external intercostal muscles lifts the ribs and sternum upwards and outwards, increasing thoracic volume in the dorso-ventral axis. The overall enlargement of the thoracic cavity decreases intra-pulmonary pressure below atmospheric pressure (creating negative pressure of about -1 mm Hg), forcing atmospheric air into the lungs.
+2. Expiration (Exhalation - Passive process):
+Expiration is the process of expelling air from the lungs. During normal quiet breathing, expiration is passive: the diaphragm and external intercostal muscles relax, allowing the diaphragm to return to its convex dome shape and ribs to drop to their resting position. This reduces thoracic volume, increasing intra-pulmonary pressure slightly above atmospheric pressure (+1 mm Hg), expelling air out of the lungs.
 
 Respiratory Volumes and Capacities:
 - Tidal Volume (TV): Volume of air inspired or expired during normal quiet breathing (~500 mL).
@@ -154,7 +153,7 @@ TLC = VC + RV = TV + IRV + ERV + RV (~5800 mL).
 
 <!-- page: 9 -->
 
-Gas Transport and Respiratory Regulation:
+Gas Transport and Respiratory Disorders:
 1. Oxygen Transport:
 - 3% dissolved in blood plasma.
 - 97% transported bound to hemoglobin as Oxyhaemoglobin (Hb4O8). Each hemoglobin molecule contains four heme iron (Fe2+) groups and can carry up to 4 molecules of O2.
@@ -176,11 +175,11 @@ Respiratory Disorders:
 - Emphysema: Chronic obstructive pulmonary disease (COPD) characterized by destruction and breakdown of alveolar walls, drastically reducing gas exchange surface area, primarily caused by cigarette smoking.
 
 
-# Unit 4: Body Fluids and Circulation (சுற்றோட்டம் மற்றும் உடல் திரவங்கள்)
+# Unit 4: Body Fluids, Circulation and Heart (சுற்றோட்டம் மற்றும் உடல் திரவங்கள்)
 
 <!-- page: 10 -->
 
-Blood Composition and Coagulation:
+Blood Composition and ABO System:
 Blood is a specialized fluid connective tissue consisting of plasma (55%) and cellular formed elements (45%).
 1. Plasma: Straw-colored viscous fluid (90-92% water, 6-8% proteins: Albumin maintains colloid osmotic pressure; Globulins provide antibodies/immunity; Fibrinogen is essential for blood clotting).
 2. Formed Elements:
@@ -198,23 +197,27 @@ Erythroblastosis Foetalis (Haemolytic disease of the newborn): Occurs when an Rh
 
 <!-- page: 11 -->
 
-Cardiac Cycle, Conduction, and ECG:
+Cardiac Conduction, ECG and Circulatory Disorders:
 The human heart is myogenic, four-chambered, enclosed within double-walled pericardium.
 Origin and Conduction of Cardiac Impulse:
 1. Sinoatrial Node (SAN): Located in right upper wall of right atrium. Spontaneously generates rhythmic action potentials at 70-75 pulses/min. Hence named the Pacemaker of the heart.
 2. Atrioventricular Node (AVN): In lower left wall of right atrium near inter-atrial septum.
 3. Bundle of His (AV Bundle): Runs down the interventricular septum, dividing into right and left bundle branches.
 4. Purkinje Fibres: Spread through ventricular walls, causing rapid synchronized ventricular contraction.
-
-Cardiac Output:
-Stroke Volume (SV) is the volume of blood pumped by each ventricle per contraction (~70 mL).
-Cardiac Output (CO) = Stroke Volume * Heart Rate = 70 mL * 72 beats/min = approximately 5040 mL/min (~5 L/min).
+Cardiac Output (CO) = Stroke Volume (70 mL) * Heart Rate (72 beats/min) = ~5040 mL/min (~5 L/min).
 
 Electrocardiogram (ECG):
-Graphical recording of electrical voltage variations generated by the heart during each cardiac cycle:
-- P Wave: Depolarization (excitation) of both atria leading to atrial contraction.
+- P Wave: Depolarization of both atria leading to atrial contraction.
 - QRS Complex: Depolarization of ventricles initiating ventricular systole.
-- T Wave: Repolarization of ventricles (return from excited to relaxed resting state).
+- T Wave: Repolarization of ventricles (return to resting state).
+
+Circulatory System Disorders and Symptoms:
+1. Hypertension (High Blood Pressure): Persistent blood pressure reading of 140/90 mm Hg or higher (normal is 120/80 mm Hg). Prolonged hypertension damages heart, brain (stroke), and kidneys.
+2. Coronary Artery Disease (CAD) or Atherosclerosis: Narrowing and stiffening of coronary arteries caused by deposits of calcium, fat, cholesterol, and fibrous plaque, restricting blood supply to myocardium.
+3. Angina Pectoris (Acute Chest Pain): Symptoms include acute suffocating or crushing chest pain radiating to left shoulder and arm, triggered when oxygen supply to heart muscle is insufficient.
+4. Heart Attack (Myocardial Infarction): Occurs when blood flow to a portion of the heart muscle is abruptly blocked by a clot, resulting in necrosis and permanent damage of myocardial tissue.
+5. Cardiac Arrest (இதயச் செயலிழப்பு): Cardiac arrest occurs when the heart suddenly and unexpectedly stops beating and completely stops pumping blood to the brain and vital organs, usually caused by electrical arrhythmia such as ventricular fibrillation. The hallmark symptoms of cardiac arrest include: sudden collapse, complete loss of consciousness, abrupt cessation of normal breathing (patient stops breathing or displays abnormal agonal gasping), absence of detectable carotid pulse, and unresponsive pupils. Emergency treatment requires immediate Cardiopulmonary Resuscitation (CPR) and automated external defibrillator (AED) delivery.
+6. Heart Failure: Condition where heart cannot pump enough blood to meet bodily metabolic demands, characterized by fatigue, shortness of breath, and fluid congestion in lungs (congestive heart failure).
 
 
 # Unit 5: Excretory Products and Elimination (கழிவுநீக்கம்)

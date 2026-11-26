@@ -67,7 +67,7 @@
    * When a student uploads a textbook PDF in React, FastAPI computes a SHA-256 file hash to skip re-indexing previously uploaded books.
    * `PyMuPDF` extracts text page-by-page with inline `[[PAGE_X]]` markers, splits it using `RecursiveCharacterTextSplitter` (1,000-character chunks, 200-character overlap), and stores `page_start` / `page_end` metadata in both **ChromaDB** and a serialized **BM25** index.
 2. **Hybrid Retrieval & Guardrail Gate:**
-   * Incoming questions run in parallel across **ChromaDB** (cosine similarity) and **BM25** (keyword matching), merged via **Reciprocal Rank Fusion (RRF)**.
+   * Incoming questions run in parallel across **ChromaDB** (cosine similarity) and **BM25** (keyword matching)**.
    * If top retrieval scores fall below a strict similarity threshold, the backend immediately returns an out-of-syllabus notice without invoking the LLM.
 3. **Multi-Agent Execution & Checkpointing:**
    * A **Router Node** directs the request along conditional edges to the **Tutor**, **Quiz**, or **Scheduler** flow.
